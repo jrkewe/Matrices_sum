@@ -3,89 +3,82 @@
 // Then we will be able to see a visual representation of both matrices and their 
 // sum on the screen.
 
-#include <stdio.h>
+#include <cstdio>
+#include <iostream>
+using namespace std;
 #define max 20
+
+void InsertValue(int n, int a[max][max]) {
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < n;j++) {
+			cout << "[" << i << "][" << j << "]:";
+			while (scanf_s("%d", &a[i][j]) != 1 || cin.get()!='\n') {
+				cout << "The data was incorrect. Try again: " << endl;
+				while (getchar() != '\n')
+					;
+			}
+		}
+	}
+	cout << "\n";
+}
+
+void PrintMatrix(int n,int a[max][max]) {
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < n;j++) {
+			cout << a[i][j] << " ";
+		}
+		cout << "\n";
+	}
+	cout << "\n";
+}
+
+void SumOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < n;j++) {
+			cout << a[i][j] << " ";
+		}
+		cout << "\n";
+	}
+	cout << "\n" << endl;
+}
+
 int main() {
 
 	//Variables:
-	int n;			//matrices dimensions
-	int i, j;		//iterative variables
-	int a[max][max], b[max][max], suma[max][max];	//matrices
+	int n;					//matrices dimensions
+	int a[max][max];		//matrix a;
+	int b[max][max];		//matrix b;
 
 	//Dialog
-	printf("The program adds two matrices of size n\n\n");
-	printf("Enter the size of matrices: ");
+	cout << "The program adds two matrices of size n\n\n"
+		 << "Enter the size of matrices : " << endl;
 
-	//Inserting data - size n
+	//Inserting size n
 	while (scanf_s("%d", &n) != 1 || getchar() != '\n') {
-		printf("The data was incorrect. Try again: ");
+		cout << "The data was incorrect. Try again: " << endl;
 		while (getchar() != '\n')
 			;
 	}
 
-	//Inserting data - elements of matrix a
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			printf("Enter element a[%d][%d]: ", i, j);
-			while (scanf_s("%d", &a[i][j]) != 1 || getchar() != '\n') {
-				printf("The data was incorrect. Try again: ");
-				while (getchar() != '\n')
-					;
-			}
-		}
-	}
+	//Inserting - elements of matrix a
+	cout << "Inserting elements of matrix:" << endl;
+	InsertValue(n,a);
 
-	//Inserting data - elements of matrix b
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			printf("Enter element b[%d][%d]: ", i, j);
-			while (scanf_s("%d", &b[i][j]) != 1 || getchar() != '\n') {
-				printf("The data was incorrect. Try again: ");
-				while (getchar() != '\n')
-					;
-			}
-		}
-	}
-	printf("\n");
+	//Inserting - elements of matrix b
+	cout << "Inserting elements of matrix:" << endl;
+	InsertValue(n,b);
 
 	//Printing matrix a
-	printf("Matrix a:\n");
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			printf("%.2d ", a[i][j]);
-
-		}
-		printf("\n");
-	}
-	printf("\n");
+	cout << "Printing matrix:" << endl;
+	PrintMatrix(n,a);
 
 	//Printing matrix b
-	printf("Matrix b:\n");
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			printf("%.2d ", b[i][j]);
-
-		}
-		printf("\n");
-	}
-
-	//Adding elements of matrix a to matrix b
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			suma[i][j] = a[i][j] + b[i][j];
-		}
-	}
-
-	//Printing sum of matrices
-	printf("\nSum of matrices: \n");
-	for (i = 1;i <= n;i++) {
-		for (j = 1;j <= n;j++) {
-			printf("%.2d ", suma[i][j]);
-
-		}
-		printf("\n");
-	}
-
+	cout << "Printing matrix:" << endl;
+	PrintMatrix(n,b);
+	
+	//Printing sum of two matrices
+	cout << "Printing sum of two matrices:" << endl;
+	SumOfTwoMatrices(n,a,b);
 
 	return 0;
 }
