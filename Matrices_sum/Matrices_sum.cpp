@@ -18,7 +18,7 @@ int InsertInt(int& n) {
 		catch (exception&) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Sprobuj ponownie: ";
+			cout << "Try again: ";
 		}
 	}
 	cout << "\n";
@@ -37,7 +37,7 @@ void InsertValue(int n, int a[dim][dim]) {
 				catch (exception&) {
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					cout << "Sprobuj ponownie: ";
+					cout << "Try again: ";
 				}
 			}
 		}
@@ -132,7 +132,7 @@ int main() {
 	PrintMatrix(n, b);
 
 	//Dialog
-	cout << "The program allows respectively to: (1) + (2) - (3) * (4) /\n"
+	cout << "The program respectively allows to: (1) + (2) - (3) * (4) /\n"
 		<< "Select an option: ";
 
 	//Inserting selector s
