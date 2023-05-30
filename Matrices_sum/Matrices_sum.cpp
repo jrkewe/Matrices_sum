@@ -7,24 +7,45 @@
 #include <cctype>
 #include <iostream>
 using namespace std;
-#define max 20
+#define dim 20
 
+int InsertInt(int& n) {
+	while (true) {
+		try {
+			cin >> n;
+			break;
+		}
+		catch (exception&) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Sprobuj ponownie: ";
+		}
+	}
+	cout << "\n";
+	return n;
+}
 
-void InsertValue(int n, int a[max][max]) {
+void InsertValue(int n, int a[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			cout << "[" << i << "][" << j << "]: ";
-			while(scanf_s("%d", &a[i][j]) != 1|| getchar() != '\n') {
-				cout << "The data was incorrect. Try again: " << endl;
-				while (getchar() != '\n')
-					;
+			while (true) {
+				try {
+					cin >> a[i][j];
+					break;
+				}
+				catch (exception&) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Sprobuj ponownie: ";
+				}
 			}
 		}
 	}
 	cout << "\n";
 }
 
-void PrintMatrix(int n,int a[max][max]) {
+void PrintMatrix(int n,int a[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			cout << a[i][j] << " ";
@@ -34,7 +55,7 @@ void PrintMatrix(int n,int a[max][max]) {
 	cout << "\n";
 }
 
-void SumOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
+void SumOfTwoMatrices(int n, int a[dim][dim], int b[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			cout << a[i][j] + b[i][j] << " ";
@@ -44,7 +65,7 @@ void SumOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
 	cout << "\n" << endl;
 }
 
-void DifferenceOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
+void DifferenceOfTwoMatrices(int n, int a[dim][dim], int b[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			cout << a[i][j] - b[i][j] << " ";
@@ -54,7 +75,7 @@ void DifferenceOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
 	cout << "\n" << endl;
 }
 
-void ProductOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
+void ProductOfTwoMatrices(int n, int a[dim][dim], int b[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			cout << a[i][j] * b[i][j] << " ";
@@ -64,7 +85,7 @@ void ProductOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
 	cout << "\n" << endl;
 }
 
-void QuotientOfTwoMatrices(int n, int a[max][max], int b[max][max]) {
+void QuotientOfTwoMatrices(int n, int a[dim][dim], int b[dim][dim]) {
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < n;j++) {
 			//error if b[i][j]=0
@@ -83,19 +104,16 @@ int main() {
 
 	//Variables:
 	int n;					//matrices dimensions
-	int a[max][max];		//matrix a;
-	int b[max][max];		//matrix b;
+	int a[dim][dim];		//matrix a;
+	int b[dim][dim];		//matrix b;
 
 	//Dialog
 	cout << "The program adds two matrices of size n\n\n"
 		<< "Enter the size of matrices : ";
 
 	//Inserting size n
-	while (scanf_s("%d", &n) != 1 || n < 0 || getchar() != '\n') {
-		cout << "The data was incorrect. Try again: " << endl;
-		while (getchar() != '\n')
-			;
-	}
+	cin.exceptions(ios::failbit|ios::badbit);
+	InsertInt(n);
 
 	//Inserting - elements of matrix a
 	cout << "Inserting elements of matrix:" << endl;
@@ -116,13 +134,10 @@ int main() {
 	//Dialog
 	cout << "The program allows respectively to: (1) + (2) - (3) * (4) /\n"
 		<< "Select an option: ";
-	int s;
+
 	//Inserting selector s
-	while (scanf_s("%d", &s) != 1 || s < 1 || s > 4 || getchar() != '\n') {
-		cout << "The data was incorrect. Try again: " << endl;
-		while (getchar() != '\n')
-			;
-	}
+	int s;
+	InsertInt(s);
 	
 	switch (s) {
 	case 1:
@@ -134,11 +149,8 @@ int main() {
 		//Dialog
 		cout << "How do you want to subtract the matrices: (1)a-b (2)b-a: " << endl;
 		//Inserting selector s
-		while (scanf_s("%d", &s) != 1 || s < 1 || s > 2 || getchar() != '\n') {
-			cout << "The data was incorrect. Try again: " << endl;
-			while (getchar() != '\n')
-				;
-		}
+		InsertInt(s);
+
 		if (s == 1) {
 			//Printing difference of two matrices a-b
 			cout << "Printing difference of two matrices:" << endl;
@@ -160,11 +172,8 @@ int main() {
 		//Dialog
 		cout << "How do you want to devide the matrices: (1)a/b (2)b/a: " << endl;
 		//Inserting selector s
-		while (scanf_s("%d", &s) != 1 || s < 1 || s > 2 || getchar() != '\n') {
-			cout << "The data was incorrect. Try again: " << endl;
-			while (getchar() != '\n')
-				;
-		}
+		InsertInt(s);
+
 		if (s == 1) {
 			//Printing quotient of two matrices a/b
 			cout << "Printing quotient of two matrices:" << endl;
