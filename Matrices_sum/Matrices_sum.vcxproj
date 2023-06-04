@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Definitions.cpp" />
     <ClCompile Include="Matrices_sum.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Declarations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
