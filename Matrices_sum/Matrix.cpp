@@ -19,6 +19,7 @@ Matrix::Matrix() {
 			matrix[i][j] = 0;
 		}
 	}
+
 }
 
 //Parameterized constructor
