@@ -7,73 +7,66 @@
 #include <cctype>
 #include <iostream>
 #include <vector>
+#include "Matrix.h"
 using namespace std;
 
-class Matrix {
-private:
-	int r = 0;		//rows
-	int c = 0;		//columns
-	vector<vector<int>> matrix;
-
-public:
-
-	//Default constructor
-	Matrix() {
-		r = 0;
-		c = 0;
-		for (int i = 0; i < r; i++) {
-			for (int j = 0;j < c;j++) {
-				matrix[i][j] = 0;
-			}
+//Default constructor
+Matrix::Matrix() {
+	r = 0;
+	c = 0;
+	for (int i = 0; i < r; i++) {
+		for (int j = 0;j < c;j++) {
+			matrix[i][j] = 0;
 		}
 	}
-	//Parameterized constructor
-	Matrix(int r, int c, vector<vector<int>> matrix) {
-		this->r = r;
-		this->c = c;
-		this->matrix = matrix;
-	}
-	//Copy constructor
-	Matrix(const Matrix& original) :
-		c(original.c),
-		r(original.r),
-		matrix(original.matrix) {
-	}
-	//Destructor
-	~Matrix() {}
+}
 
-	//Get/Set for r
-	int getr() {
-		return r;
-	}
-	void setr(int x) {
-		this->r = x;
-	}
+//Parameterized constructor
+Matrix::Matrix(int r, int c, vector<vector<int>> matrix) {
+	this->r = r;
+	this->c = c;
+	this->matrix = matrix;
+}
+//Copy constructor
+Matrix::Matrix(const Matrix& original) :
+	c(original.c),
+	r(original.r),
+	matrix(original.matrix) {
+}
+//Destructor
+Matrix::~Matrix() {}
 
-	//Get/Set for c
-	int getc() {
-		return c;
-	}
-	void setc(int c) {
-		this->c = c;
-	}
+//Get/Set for r
+int Matrix::getr() {
+	return r;
+}
+void Matrix::setr(int x) {
+	this->r = x;
+}
 
-	//Get/Set for matrix
-	vector<vector<int>> getmtx() {
-		return matrix;
-	}
-	void setmtx(vector<vector<int>> mtx) {
-		matrix = mtx;
-	}
+//Get/Set for c
+int Matrix::getc() {
+	return c;
+}
+void Matrix::setc(int c) {
+	this->c = c;
+}
 
-	//Get/Set for elements of matrix
-	int getelements(int i, int j) {
-		return matrix[i][j];
-	}
-	void setelements(int i, int j, int x) {
-		matrix[i][j] = x;
-	}
-};
+//Get/Set for matrix
+vector<vector<int>> Matrix::getmtx() {
+	return matrix;
+}
+void Matrix::setmtx(vector<vector<int>> mtx) {
+	matrix = mtx;
+}
+
+//Get/Set for elements of matrix
+int Matrix::getelements(int i, int j) {
+	return matrix[i][j];
+}
+void Matrix::setelements(int i, int j, int x) {
+	matrix[i][j] = x;
+}
 
 //Error checking loop
 int InsertInt(int& n) {
