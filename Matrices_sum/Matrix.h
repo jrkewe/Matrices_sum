@@ -2,21 +2,28 @@
 #include <cstdio>
 #include <cctype>
 #include <iostream>
-#include <vector>
-#ifndef Matrix_H 
-#define Matrix_H  
-
+#include <vector> 
+#pragma
 class Matrix {
 private:
-	int r = 0;		//rows
-	int c = 0;		//columns
-	vector<vector<int>> matrix;
+	int r;		//rows
+	int c;		//columns
+	std::vector<std::vector<int>> matrix ;
 
 public:
 
 	//Constructors
-	Matrix();
-	Matrix(int r, int c, vector<vector<int>> matrix);
+	//Default constructor
+	Matrix() {
+		r = 0;
+		c = 0;
+		for (int i = 0;i < r;i++) {
+			for (int j = 0;j < c;i++) {
+				matrix[i][j] = 0;
+			}
+		}
+	}
+	Matrix(int r, int c, std::vector<std::vector<int>> matrix);
 	Matrix(const Matrix& original);
 	//Destructor
 	~Matrix();
@@ -30,11 +37,10 @@ public:
 	void setc(int c);
 
 	//Get/Set for matrix
-	vector<vector<int>> getmtx();
-	void setmtx(vector<vector<int>> mtx);
+	std::vector<std::vector<int>> getmtx();
+	void setmtx(std::vector<std::vector<int>> mtx);
 
 	//Get/Set for elements of matrix
 	int getelements(int i, int j);
 	void setelements(int i, int j, int x);
 };
-#endif

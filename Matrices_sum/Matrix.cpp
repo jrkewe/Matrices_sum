@@ -10,26 +10,14 @@
 #include "Matrix.h"
 using namespace std;
 
-//Default constructor
-Matrix::Matrix() {
-	r = 0;
-	c = 0;
-	for (int i = 0; i < r; i++) {
-		for (int j = 0;j < c;j++) {
-			matrix[i][j] = 0;
-		}
-	}
-
-}
-
 //Parameterized constructor
-Matrix::Matrix(int r, int c, vector<vector<int>> matrix) {
+Matrix::Matrix(int r, int c, std::vector<std::vector<int>> matrix) {
 	this->r = r;
 	this->c = c;
 	this->matrix = matrix;
 }
 //Copy constructor
-Matrix::Matrix(const Matrix& original) :
+Matrix::Matrix(const Matrix& original):
 	c(original.c),
 	r(original.r),
 	matrix(original.matrix) {
@@ -163,7 +151,7 @@ int main() {
 		cout << "Printing sum of two matrices:" << endl;
 		for (int i = 0;i<A.getr();i++) {
 			for (int j = 0;j < A.getc();j++) {
-				cout << A.getelements(i, j) + B.getelements(i, j) << " ";
+			cout << A.getelements(i, j) + B.getelements(i, j) << " ";
 			}
 			cout << "\n";
 		}
@@ -216,7 +204,10 @@ int main() {
 			cout << "Printing quotient of two matrices:" << endl;
 			for (int i = 0;i < A.getr();i++) {
 				for (int j = 0;j < A.getc();j++) {
-					cout << A.getelements(i, j) / B.getelements(i, j) << " ";
+					if (B.getelements(i,j)==0) {
+						cout << "- ";
+					}
+					else cout << A.getelements(i, j) / B.getelements(i, j) << " ";
 				}
 				cout << "\n";
 			}
@@ -225,7 +216,10 @@ int main() {
 			cout << "Printing quotient of two matrices:" << endl;
 			for (int i = 0;i < A.getr();i++) {
 				for (int j = 0;j < A.getc();j++) {
-					cout << B.getelements(i, j) / A.getelements(i, j) << " ";
+					if (A.getelements(i, j) == 0) {
+						cout << "- ";
+					}
+					else cout << A.getelements(i, j) / B.getelements(i, j) << " ";
 				}
 				cout << "\n";
 			}
