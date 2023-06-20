@@ -1,7 +1,6 @@
-//// The program adds to matrices and writes their sum on the screen. It takes n 
+//// The program operates on two matrices and prints results on the screen. It takes r and c 
 //// as the dimensions of two matrices and then asks for values to fill them up.
-//// Then we will be able to see a visual representation of both matrices and their 
-//// sum on the screen.
+//// Then we will be able to see a visual representation of both matrices and results.
 
 #include <cstdio>
 #include <cctype>
@@ -73,6 +72,62 @@ int InsertInt(int& n) {
 	}
 	cout << "\n";
 	return n;
+}
+
+//Overloading operator +
+Matrix operator +(Matrix& A, Matrix& B) {
+	Matrix R;
+	int n = A.getr();
+	int m = A.getc();
+	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setelements(i, j, A.getelements(i, j) + B.getelements(i, j));
+		}
+	}
+	return R;
+}
+
+//Overloading operator -
+Matrix operator -(Matrix& A, Matrix& B) {
+	Matrix R;
+	int n = A.getr();
+	int m = A.getc();
+	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setelements(i, j, A.getelements(i, j) - B.getelements(i, j));
+		}
+	}
+	return R;
+}
+
+//Overloading operator *
+Matrix operator *(Matrix& A, Matrix& B) {
+	Matrix R;
+	int n = A.getr();
+	int m = A.getc();
+	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setelements(i, j, A.getelements(i, j) * B.getelements(i, j));
+		}
+	}
+	return R;
+}
+
+//Overloading operator /
+Matrix operator /(Matrix& A, Matrix& B) {
+	Matrix R;
+	int n = A.getr();
+	int m = A.getc();
+	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setelements(i, j, A.getelements(i, j) / B.getelements(i, j));
+		}
+	}
+	return R;
 }
 
 int main() {
@@ -147,14 +202,9 @@ int main() {
 
 	switch (s) {
 	case 1:
+		C = (A + B);
 		//Printing sum of two matrices
 		cout << "Printing sum of two matrices:" << endl;
-		for (int i = 0;i<A.getr();i++) {
-			for (int j = 0;j < A.getc();j++) {
-			cout << A.getelements(i, j) + B.getelements(i, j) << " ";
-			}
-			cout << "\n";
-		}
 		break;
 	case 2:
 		//Dialog and inserting selector s
@@ -163,36 +213,17 @@ int main() {
 
 		//Printing difference of two matrices a-b or b-a
 		if (s == 1) {
-			cout << "Printing difference of two matrices:" << endl;
-			for (int i = 0;i < A.getr();i++) {
-				for (int j = 0;j < A.getc();j++) {
-					cout << A.getelements(i, j) - B.getelements(i, j) << " ";
-				}
-				cout << "\n";
-			}
-			break;
+			C = A-B;
 		}
 		else {
-			cout << "Printing difference of two matrices:" << endl;
-			for (int i = 0;i < A.getr();i++) {
-				for (int j = 0;j < A.getc();j++) {
-					cout << B.getelements(i, j) - A.getelements(i, j) << " ";
-				}
-				cout << "\n";
-			}
-			break;
+			C = B-A;
 		}
-
+		cout << "Printing difference of two matrices:" << endl;
 		break;
 	case 3:
+		C = A * B;
 		//Printing product of two matrices
 		cout << "Printing product of two matrices:" << endl;
-		for (int i = 0;i < A.getr();i++) {
-			for (int j = 0;j < A.getc();j++) {
-				cout << A.getelements(i, j) * B.getelements(i, j) << " ";
-			}
-			cout << "\n";
-		}
 		break;
 	case 4:
 		//Dialog and inserting selector s
@@ -201,31 +232,22 @@ int main() {
 
 		//Printing quotient of two matrices a/b or b/a
 		if (s == 1) {
+			C = A / B;
 			cout << "Printing quotient of two matrices:" << endl;
-			for (int i = 0;i < A.getr();i++) {
-				for (int j = 0;j < A.getc();j++) {
-					if (B.getelements(i,j)==0) {
-						cout << "- ";
-					}
-					else cout << A.getelements(i, j) / B.getelements(i, j) << " ";
-				}
-				cout << "\n";
-			}
 		}
 		else {
+			C = B / A;
 			cout << "Printing quotient of two matrices:" << endl;
-			for (int i = 0;i < A.getr();i++) {
-				for (int j = 0;j < A.getc();j++) {
-					if (A.getelements(i, j) == 0) {
-						cout << "- ";
-					}
-					else cout << A.getelements(i, j) / B.getelements(i, j) << " ";
-				}
-				cout << "\n";
-			}
 		}
 		break;
 	default:;
+	}
+	//Printing the reasult
+	for (int i = 0;i < C.getr();i++) {
+		for (int j = 0;j < C.getc();j++) {
+			cout << C.getelements(i, j) << " ";
+		}
+		cout << "\n";
 	}
 	return 0;
 }

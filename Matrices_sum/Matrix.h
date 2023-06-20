@@ -43,4 +43,10 @@ public:
 	//Get/Set for elements of matrix
 	int getelements(int i, int j);
 	void setelements(int i, int j, int x);
+
+	//Overloading operator =
+	void operator =(const Matrix &A) {
+		matrix = A.matrix;
+	}
+
 };
