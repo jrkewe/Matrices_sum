@@ -49,4 +49,6 @@ public:
 		matrix = A.matrix;
 	}
 
+	//Transposition method
+	Matrix T(Matrix& A);
 };

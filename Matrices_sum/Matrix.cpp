@@ -74,6 +74,16 @@ int InsertInt(int& n) {
 	return n;
 }
 
+//Printing method
+void Print(Matrix A) {
+	for (int i = 0;i < A.getr();i++) {
+		for (int j = 0;j < A.getc();j++) {
+			cout << A.getelements(i, j) << " ";
+		}
+		cout << "\n";
+	}
+}
+
 //Overloading operator +
 Matrix operator +(Matrix& A, Matrix& B) {
 	Matrix R;
@@ -108,30 +118,51 @@ Matrix operator *(Matrix& A, Matrix& B) {
 	int n = A.getr();
 	int m = A.getc();
 	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
+	//i i j to wspolrzedne elementu macierzy R
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < m;j++) {
-			R.setelements(i, j, A.getelements(i, j) * B.getelements(i, j));
+			//Liczenie jednej wspolrzednej w macierzy wynikowej
+			int x=0;
+			for (int k = 0;k<n;k++) {
+				x += (A.getelements(i, k) * B.getelements(k, j));
+			}
+			R.setelements(i, j, x);
 		}
 	}
 	return R;
 }
 
 //Overloading operator /
-Matrix operator /(Matrix& A, Matrix& B) {
+Matrix operator /(Matrix& A, int& x) {
 	Matrix R;
 	int n = A.getr();
 	int m = A.getc();
 	R.setmtx(vector<vector<int>>(n, vector<int>(m)));
 	for (int i = 0;i < n;i++) {
 		for (int j = 0;j < m;j++) {
-			R.setelements(i, j, A.getelements(i, j) / B.getelements(i, j));
+			R.setelements(i, j, A.getelements(i, j) / x);
 		}
 	}
 	return R;
 }
 
+//Transposition method
+Matrix T(Matrix& A) {
+	Matrix R;
+	int n = A.getr();
+	int m = A.getc();
+	R.setmtx(vector<vector<int>>(A.getc(), vector<int>(A.getr())));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setelements(i, j, A.getelements(j, i) );
+		}
+	}
+	return R;
+}
+
+
 int main() {
-	
+
 	int s;	//selector
 
 	//Dialog
@@ -143,19 +174,19 @@ int main() {
 	Matrix A;
 	A.setr(s);
 	A.setc(s);
-	A.setmtx ( vector <vector<int>> (s,vector <int>(s,0)));
+	A.setmtx(vector <vector<int>>(s, vector <int>(s, 0)));
 	cout << "Enter the elements of matrix A:\n";
-	for (int i = 0;i<A.getr();i++) {
-		for (int j = 0;j<A.getc();j++) {
+	for (int i = 0;i < A.getr();i++) {
+		for (int j = 0;j < A.getc();j++) {
 			InsertInt(s);
-			A.setelements(i,j,s);
+			A.setelements(i, j, s);
 		}
 	}
 
 	//Creating matrix B 
 	cout << "Enter the size of matrix B: ";
 	InsertInt(s);
-	Matrix B (s, s, vector<vector<int>> (s, vector<int>(s, 0)));
+	Matrix B(s, s, vector<vector<int>>(s, vector<int>(s, 0)));
 	cout << "Enter the elements of matrix B:\n";
 	for (int i = 0;i < B.getr();i++) {
 		for (int j = 0;j < B.getc();j++) {
@@ -195,59 +226,90 @@ int main() {
 		cout << "\n";
 	}
 
+	while (true) {
 	//Dialog
-	cout << "The program respectively allows to: (1) + (2) - (3) * (4) /\n"
+	cout << "The program respectively allows to: (1) + (2) - (3) * (4) / (5) T (6)Exit\n"
 		<< "Select an option: ";
 	InsertInt(s);
+		switch (s) {
+		case 1:
+			C = (A + B);
+			//Printing sum of two matrices
+			cout << "Printing sum of two matrices:" << endl;
+			Print(C);
+			break;
+		case 2:
+			//Dialog and inserting selector s
+			cout << "How do you want to subtract the matrices: (1)a-b (2)b-a: " << endl;
+			InsertInt(s);
 
-	switch (s) {
-	case 1:
-		C = (A + B);
-		//Printing sum of two matrices
-		cout << "Printing sum of two matrices:" << endl;
-		break;
-	case 2:
-		//Dialog and inserting selector s
-		cout << "How do you want to subtract the matrices: (1)a-b (2)b-a: " << endl;
-		InsertInt(s);
+			//Printing difference of two matrices a-b or b-a
+			if (s == 1) {
+				C = A - B;
+			}
+			else {
+				C = B - A;
+			}
+			cout << "Printing difference of two matrices:" << endl;
+			Print(C);
+			break;
+		case 3:
+			//Dialog and inserting selector s
+			cout << "How do you want to multiply the matrices: (1)a*b (2)b*a: " << endl;
+			InsertInt(s);
 
-		//Printing difference of two matrices a-b or b-a
-		if (s == 1) {
-			C = A-B;
+			//Printing product of two matrices a*b or b*a
+			if (s == 1) {
+				C = A * B;
+			}
+			else {
+				C = B * A;
+			}
+			cout << "Printing product of two matrices:" << endl;
+			Print(C);
+			break;
+		case 4:
+			//Dialog and inserting selector s
+			cout << "Which matrix you want to devide: (1)a (2)b: " << endl;
+			InsertInt(s);
+			cout << "Enter the divisor:";
+			int n;
+			InsertInt(n);
+			cout << "Printing quotient of matrix " << endl;
+			//Printing quotient of two matrices a/b or b/a
+			if (s == 1) {
+				C.setr(A.getr());
+				C.setc(A.getc());
+				cout << "A by " << n << ":" << endl;
+				C = A / n;
+			}
+			else {
+				cout << "B by " << n << ":" << endl;
+				C = B / n;
+			}
+			Print(C);
+			break;
+		case 5:
+			//Dialog and inserting selector s
+			cout << "Which matrix you want to transpose: (1)a (2)b: " << endl;
+			InsertInt(s);
+			if (s == 1) {
+				C.setr(A.getr());
+				C.setc(A.getc());
+				cout << "Transposed A is:" << endl;
+				C = T(A);
+			}
+			else {
+				cout << "Transposed B is:" << endl;
+				C = T(B);
+			}
+			Print(C);
+			break;
+		case 6:
+			cout << "Quit";
+			return 0;
+		default:;
 		}
-		else {
-			C = B-A;
-		}
-		cout << "Printing difference of two matrices:" << endl;
-		break;
-	case 3:
-		C = A * B;
-		//Printing product of two matrices
-		cout << "Printing product of two matrices:" << endl;
-		break;
-	case 4:
-		//Dialog and inserting selector s
-		cout << "How do you want to devide the matrices: (1)a/b (2)b/a: " << endl;
-		InsertInt(s);
-
-		//Printing quotient of two matrices a/b or b/a
-		if (s == 1) {
-			C = A / B;
-			cout << "Printing quotient of two matrices:" << endl;
-		}
-		else {
-			C = B / A;
-			cout << "Printing quotient of two matrices:" << endl;
-		}
-		break;
-	default:;
-	}
-	//Printing the reasult
-	for (int i = 0;i < C.getr();i++) {
-		for (int j = 0;j < C.getc();j++) {
-			cout << C.getelements(i, j) << " ";
-		}
-		cout << "\n";
 	}
 	return 0;
 }
