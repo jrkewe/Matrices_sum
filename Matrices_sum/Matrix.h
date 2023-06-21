@@ -1,48 +1,31 @@
-
-#include <cstdio>
-#include <cctype>
-#include <iostream>
 #include <vector> 
-#pragma
+#include "Dimensions.h"
+
 class Matrix {
 private:
-	int r;		//rows
-	int c;		//columns
+	Dimensions dimobj;			
 	std::vector<std::vector<int>> matrix ;
 
 public:
 
 	//Constructors
-	//Default constructor
-	Matrix() {
-		r = 0;
-		c = 0;
-		for (int i = 0;i < r;i++) {
-			for (int j = 0;j < c;i++) {
-				matrix[i][j] = 0;
-			}
-		}
-	}
-	Matrix(int r, int c, std::vector<std::vector<int>> matrix);
+	Matrix() {};
+	Matrix(Dimensions DIMOBJ, std::vector<std::vector<int>> mtx);
 	Matrix(const Matrix& original);
 	//Destructor
 	~Matrix();
 
-	//Get/Set for r
-	int getr();
-	void setr(int x);
-
-	//Get/Set for c
-	int getc();
-	void setc(int c);
+	//Get/Set for obj.:dimensions
+	Dimensions getDim();
+	void setDim(int r, int c);
 
 	//Get/Set for matrix
-	std::vector<std::vector<int>> getmtx();
-	void setmtx(std::vector<std::vector<int>> mtx);
+	std::vector<std::vector<int>> getMtx();
+	void setMtx(std::vector<std::vector<int>> mtx);
 
 	//Get/Set for elements of matrix
-	int getelements(int i, int j);
-	void setelements(int i, int j, int x);
+	int getElements(int i, int j);
+	void setElements(int i, int j, int x);
 
 	//Overloading operator =
 	void operator =(const Matrix &A) {
@@ -51,4 +34,7 @@ public:
 
 	//Transposition method
 	Matrix T(Matrix& A);
+
+	//print method
+	void print(Matrix A);
 };

@@ -127,9 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dimensions.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dimensions.h" />
     <ClInclude Include="Matrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
