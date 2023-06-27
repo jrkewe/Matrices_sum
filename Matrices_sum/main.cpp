@@ -85,20 +85,6 @@ Matrix operator /(Matrix& A, int x) {
 	return R;
 }
 
-//Transposition method
-Matrix T(Matrix& A) {
-	Matrix R;
-	int n = A.getDim().getRow();
-	int m = A.getDim().getCol();
-	R.setMtx(vector<vector<int>>(A.getDim().getCol(), vector<int>(A.getDim().getRow())));
-	for (int i = 0;i < n;i++) {
-		for (int j = 0;j < m;j++) {
-			R.setElements(i, j, A.getElements(j, i));
-		}
-	}
-	return R;
-}
-
 //Printing method
 void print(Matrix A) {
 	for (int i = 0;i < A.getDim().getRow();i++) {
@@ -142,8 +128,9 @@ int main() {
 	cout << "Enter the elements of matrix A:\n";
 	for (int i = 0;i < A.getDim().getRow();i++) {
 		for (int j = 0;j < A.getDim().getCol();j++) {
-			insertInt(num);
-			A.setElements(i, j, num);
+			int ele;
+			insertInt(ele);
+			A.setElements(i, j, ele);
 		}
 	}
 
@@ -155,8 +142,9 @@ int main() {
 	cout << "Enter the elements of matrix B:\n";
 	for (int i = 0;i < B.getDim().getRow();i++) {
 		for (int j = 0;j < B.getDim().getCol();j++) {
-			insertInt(num);
-			B.setElements(i, j, num);
+			int ele;
+			insertInt(ele);
+			B.setElements(i, j, ele);
 		}
 	}
 
@@ -198,12 +186,14 @@ int main() {
 		insertInt(num);
 		switch (num) {
 		case 1:
+			//Error if A.size()!=B.size()
 			C = (A + B);
 			//Printing sum of two matrices
 			cout << "Printing sum of two matrices:" << endl;
 			print(C);
 			break;
 		case 2:
+			//Error if A.size()!=B.size()
 			//Dialog and inserting selector s
 			cout << "How do you want to subtract the matrices: (1)a-b (2)b-a: " << endl;
 			insertInt(num);
@@ -225,9 +215,13 @@ int main() {
 
 			//Printing product of two matrices a*b or b*a
 			if (num == 1) {
+			//Error if A.size()!=B.size()
+
 				C = A * B;
 			}
 			else if (num == 2) {
+			//Error if A.size()!=B.size()
+
 				C = B * A;
 			}
 			else if (num == 3) {
@@ -287,7 +281,8 @@ int main() {
 		case 6:
 			cout << "Quit";
 			return 0;
-		default:;
+		default:
+			;
 		}
 	}
 	return 0;

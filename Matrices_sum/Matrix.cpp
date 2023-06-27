@@ -3,7 +3,7 @@
 #include "Matrix.h"
 using namespace std;
 
-////Parameterized constructor
+//Member initializer list
 Matrix::Matrix(Dimensions DIMOBJ, std::vector<std::vector<int>> mtx):dimobj(DIMOBJ), matrix(mtx) {}
 
 //Copy constructor
@@ -36,4 +36,18 @@ int Matrix::getElements(int i, int j) {
 }
 void Matrix::setElements(int i, int j, int x) {
 	matrix[i][j] = x;
+}
+
+//Transposition method
+Matrix T(Matrix& A) {
+	Matrix R;
+	int n = A.getDim().getRow();
+	int m = A.getDim().getCol();
+	R.setMtx(vector<vector<int>>(A.getDim().getCol(), vector<int>(A.getDim().getRow())));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setElements(i, j, A.getElements(j, i));
+		}
+	}
+	return R;
 }
