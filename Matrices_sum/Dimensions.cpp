@@ -2,27 +2,27 @@
 #include "Dimensions.h"
 using namespace std;
 
-//Parameterized constructor
+//Parameteric constructor
 Dimensions::Dimensions(int r, int c) {
-	this->row = r;
-	this->col = c;
+	numberOfRows = r;
+	numberOfColumns = c;
 }
 
 //Destructor
 Dimensions::~Dimensions() {}
 
 //Get/Set for r
-int Dimensions::getRow() {
-	return row;
+int Dimensions::getNumberOfRows() {
+	return numberOfRows;
 }
-void Dimensions::setRow(int r) {
-	this->row = r;
+void Dimensions::setNumberOfRows(int r) {
+	this->numberOfRows = r;
 }
 
 //Get/set for c
-int Dimensions::getCol() {
-	return col;
+int Dimensions::getNumberOfColumns() {
+	return numberOfColumns;
 }
-void Dimensions::setCol(int c) {
-	this->col = c;
+void Dimensions::setNumberOfColumns(int c) {
+	this->numberOfColumns = c;
 }

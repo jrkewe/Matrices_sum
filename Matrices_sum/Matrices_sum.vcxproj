@@ -128,12 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dimensions.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Operators_overloading.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dimensions.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Operators_overloading.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

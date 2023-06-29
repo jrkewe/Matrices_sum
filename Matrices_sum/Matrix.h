@@ -1,9 +1,12 @@
+#ifndef MATRIX
+#define MATRIX
+
 #include <vector> 
 #include "Dimensions.h"
 
 class Matrix {
 private:
-	Dimensions dimobj;			
+	Dimensions dimentionsObject;			
 	std::vector<std::vector<int>> matrix ;
 
 public:
@@ -15,15 +18,15 @@ public:
 	//Destructor
 	~Matrix();
 
-	//Get/Set for obj.:dimensions
-	Dimensions getDim();
-	void setDim(int r, int c);
+	//Get/Set - dimentions object
+	Dimensions getDimentions();
+	void setDimentions(int r, int c);
 
-	//Get/Set for matrix
-	std::vector<std::vector<int>> getMtx();
-	void setMtx(std::vector<std::vector<int>> mtx);
+	//Get/Set - matrix
+	std::vector<std::vector<int>> getMatrix();
+	void setMatrix(std::vector<std::vector<int>> matrix);
 
-	//Get/Set for elements of matrix
+	//Get/Set - elements
 	int getElements(int i, int j);
 	void setElements(int i, int j, int x);
 
@@ -32,10 +35,10 @@ public:
 		matrix = A.matrix;
 	}
 
+	//Print method
+	void print();
+
 	//Transposition method
 	Matrix T(Matrix& A);
-
-	//print method
-	void print(Matrix A);
 };
-
+#endif

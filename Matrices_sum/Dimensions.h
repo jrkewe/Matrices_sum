@@ -1,10 +1,10 @@
 #ifndef DIMENSIONS
 #define DIMENSIONS
-#include <iostream>
 
 class Dimensions {
-	int row=0;
-	int col=0;
+	int numberOfRows=0;
+	int numberOfColumns=0;
+
 public:
 	//Constructors
 	Dimensions() {};
@@ -13,11 +13,11 @@ public:
 	~Dimensions();
 
 	//Get/Set for r
-	int getRow();
-	void setRow(int r);
+	int getNumberOfRows();
+	void setNumberOfRows(int r);
 
 	//Get/set for c
-	int getCol();
-	void setCol(int c);
+	int getNumberOfColumns();
+	void setNumberOfColumns(int c);
 };
 #endif

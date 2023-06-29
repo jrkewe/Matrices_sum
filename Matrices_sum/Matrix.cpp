@@ -3,37 +3,55 @@
 #include "Matrix.h"
 using namespace std;
 
-//Member initializer list
-Matrix::Matrix(Dimensions DIMOBJ, std::vector<std::vector<int>> mtx):dimobj(DIMOBJ), matrix(mtx) {}
-
-//Copy constructor
-Matrix::Matrix(const Matrix& original):
-	dimobj(original.dimobj),
-	matrix(original.matrix) {
-}
-//Destructor
+//Constructors
+Matrix::Matrix(Dimensions dimentionsobject, std::vector<std::vector<int>> matrix) : dimentionsObject(dimentionsobject), matrix(matrix) {}
+Matrix::Matrix(const Matrix& original) : dimentionsObject(original.dimentionsObject), matrix(original.matrix) {}
 Matrix::~Matrix() {}
 
-//Get/Set for obj dimensions
-Dimensions Matrix::getDim() {
-	return dimobj;
+//Get/Set - dimentions object
+Dimensions Matrix::getDimentions() {
+	return dimentionsObject;
 }
-void Matrix::setDim(int r, int c) {
-	this->dimobj = {r,c};
+void Matrix::setDimentions(int r, int c) {
+	dimentionsObject = {r,c};
 }
 
-//Get/Set for matrix
-vector<vector<int>> Matrix::getMtx() {
+//Get/Set - matrix
+vector<vector<int>> Matrix::getMatrix() {
 	return matrix;
 }
-void Matrix::setMtx(vector<vector<int>> mtx) {
-	matrix = mtx;
+void Matrix::setMatrix(vector<vector<int>> Matrix) {
+	matrix = Matrix;
 }
 
-//Get/Set for elements of matrix
+//Get/Set - elements
 int Matrix::getElements(int i, int j) {
 	return matrix[i][j];
 }
 void Matrix::setElements(int i, int j, int x) {
 	matrix[i][j] = x;
+}
+
+//Print method
+void Matrix::print() {
+	for (int i = 0;i < dimentionsObject.getNumberOfRows();i++) {
+		for (int j = 0;j < dimentionsObject.getNumberOfColumns();j++) {
+			cout << matrix[i][j] << " ";
+		}
+		cout << "\n";
+	}
+}
+
+//Transposition method
+Matrix Matrix::T(Matrix& A) {
+	Matrix R;
+	int n = A.getDimentions().getNumberOfRows();
+	int m = A.getDimentions().getNumberOfColumns();
+	R.setMatrix(vector<vector<int>>(m, vector<int>(n)));
+	for (int i = 0;i < n;i++) {
+		for (int j = 0;j < m;j++) {
+			R.setElements(i, j, A.getElements(j, i));
+		}
+	}
+	return R;
 }
