@@ -127,17 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dialog.cpp" />
     <ClCompile Include="Dimensions.cpp" />
+    <ClCompile Include="MatrixDeclaration.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Operators_overloading.cpp" />
+    <ClCompile Include="OperatorsOverloading.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dialog.h" />
     <ClInclude Include="Dimensions.h" />
+    <ClInclude Include="MatrixDeclaration.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Operators_overloading.h" />
+    <ClInclude Include="OperatorsOverloading.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
