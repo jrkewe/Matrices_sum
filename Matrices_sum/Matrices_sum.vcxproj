@@ -127,9 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Dialog.cpp" />
+    <ClCompile Include="Texte.cpp" />
     <ClCompile Include="Dimensions.cpp" />
-    <ClCompile Include="MatrixDeclaration.cpp" />
+    <ClCompile Include="DeclarationOfMatrices.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="main.cpp" />
@@ -137,9 +137,9 @@
     <ClCompile Include="OperatorsOverloading.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Dialog.h" />
+    <ClInclude Include="Texte.h" />
     <ClInclude Include="Dimensions.h" />
-    <ClInclude Include="MatrixDeclaration.h" />
+    <ClInclude Include="DeclarationOfMatrices.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Matrix.h" />

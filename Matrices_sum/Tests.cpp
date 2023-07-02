@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Tests.h"
 #include "Dimensions.h"
+#include "Texte.h"
 using namespace std;
 
 
@@ -15,7 +16,7 @@ int testInt(int& n) {
 		catch (exception&) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			std::cout << "Try again: ";
+			texteErrorCheckingLoop();
 		}
 	}
 	cout << "\n";
@@ -30,7 +31,8 @@ bool testMatricesSize(Dimensions A, Dimensions B) {
 		}
 	}
 	catch (std::domain_error& e) {
-		cout << "Domain error: " << e.what() << endl;
+		texteExceptionsHandling();
+		cout << e.what() << endl;
 		return true;
 	}
 	return false;

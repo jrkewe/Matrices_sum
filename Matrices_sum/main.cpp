@@ -8,13 +8,13 @@
 #include "Tests.h"
 #include "OperatorsOverloading.h"
 #include "Menu.h"
-#include "MatrixDeclaration.h"
+#include "DeclarationOfMatrices.h"
+#include "Texte.h"
 using namespace std;
 
 int main() {
 
-	//Dialog
-	cout << "The program allows to: add, subtract, multiply, divide, transpose matrices.\n\n";
+	texteFroTheUser();
 
 	Matrix A, B, C;
 

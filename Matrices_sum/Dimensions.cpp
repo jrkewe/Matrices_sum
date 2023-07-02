@@ -19,8 +19,10 @@ void Dimensions::setNumberOfRows(int r) {
 	this->numberOfRows = r;
 }
 
+
 //Get/set for c
 int Dimensions::getNumberOfColumns() {
+
 	return numberOfColumns;
 }
 void Dimensions::setNumberOfColumns(int c) {

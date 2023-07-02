@@ -1,6 +1,6 @@
 #ifndef MATRIXDECLARATION
 #define MATRIXDECLARATION
-#include "MatrixDeclaration.h"
+#include "DeclarationOfMatrices.h"
 #include "Matrix.h"
 
 void declarationOfMatrixA(Matrix& A);

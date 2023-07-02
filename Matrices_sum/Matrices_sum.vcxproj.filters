@@ -33,10 +33,10 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixDeclaration.cpp">
+    <ClCompile Include="DeclarationOfMatrices.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dialog.cpp">
+    <ClCompile Include="Texte.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +56,10 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixDeclaration.h">
+    <ClInclude Include="DeclarationOfMatrices.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dialog.h">
+    <ClInclude Include="Texte.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
