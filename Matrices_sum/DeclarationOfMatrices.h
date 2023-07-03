@@ -6,5 +6,5 @@
 void declarationOfMatrixA(Matrix& A);
 void declarationOfMatrixB(Matrix& B);
 void declarationOfMatrixC(Matrix& B);
-
+void declarationOfMatrixD(Matrix& D);
 #endif

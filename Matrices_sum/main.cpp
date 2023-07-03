@@ -16,13 +16,14 @@ int main() {
 
 	texteFroTheUser();
 
-	Matrix A, B, C;
+	Matrix A, B, C, D;
 
 	declarationOfMatrixA(A);
 	declarationOfMatrixB(B);
 	declarationOfMatrixC(B);
+	declarationOfMatrixD(D);
 
-	Menu(A, B, C);
+	Menu(A, B, C, D);
 
 	return 0;
 }

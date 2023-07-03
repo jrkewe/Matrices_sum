@@ -40,3 +40,13 @@ void declarationOfMatrixB(Matrix& B) {
 void declarationOfMatrixC(Matrix& B) {
 	Matrix C(B);
 }
+
+void declarationOfMatrixD(Matrix& D) {
+	D.setDimentions(number, number);
+	D.setMatrix(vector <vector<int>>(number, vector <int>(number, 0)));
+	for (int i = 0;i < D.getDimentions().getNumberOfRows();i++) {
+		for (int j = 0;j < D.getDimentions().getNumberOfColumns();j++) {
+			D.setElements(i, j, 1);
+		}
+	}
+}

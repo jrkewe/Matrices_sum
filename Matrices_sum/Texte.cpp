@@ -27,8 +27,8 @@ void texteMatrixB(int y) {
 }
 
 void texteSwitch() {
-	std::cout << "The program respectively allows to : (1) + (2) - (3) * (4) / (5)T(6)Update matrix A(7)Update matrix B(8)Quit\n"
-		<< "Select an option:" << std::endl;
+	std::cout << "The program respectively allows to: (1)+ (2)- (3)* (4)/ (5)T (6)Update matrix A (7)Update matrix B (8)Eigenvalue (9)Quit\n"
+		<< "Select an option: ";
 }
 
 void texteAddition() {

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <deque>
 #include "Dimensions.h"
 #include "Matrix.h"
 #include "Tests.h"
@@ -7,8 +8,7 @@
 #include "Texte.h"
 using namespace std;
 
-int Menu(Matrix& A, Matrix& B, Matrix& C) {
-
+int Menu(Matrix& A, Matrix& B, Matrix& C, Matrix& D) {
 	int number;
 
 	//Menu
@@ -168,6 +168,60 @@ int Menu(Matrix& A, Matrix& B, Matrix& C) {
 			break;
 
 		case 8:
+		{
+			//Dialog 
+			cout << "Eigenvalue of witch matrix do you want to count: (1)A (2)B: " << endl;
+			testInt(number);
+
+
+			int sum;
+			sum = -1;
+			int product;
+			deque <int> dq;
+
+			//Operations
+			if (number == 1) {
+				D.setMatrix(vector<vector<int>>(A.getDimentions().getNumberOfColumns(), vector<int>(A.getDimentions().getNumberOfRows())));
+				//TODO:
+				for (int i = 0;i < D.getDimentions().getNumberOfRows();i++) {
+					dq.push_back(i);
+					for (int j = 0;j < D.getDimentions().getNumberOfColumns();j++) {
+						D.setElements(i, j, A.getElements(i, j));
+					}
+				}
+				for (int j = 0;j < D.getDimentions().getNumberOfRows();j++) {
+					product = 1;
+					for (int i = 0;i < D.getDimentions().getNumberOfRows();i++) {
+						product *= D.getElements(i, dq[i]);
+						int x = dq[0];
+						dq.pop_front();
+						dq.push_back(x);
+					}
+					sum += product;
+				}
+				cout << "sum" << sum << endl;
+				//TODO
+			}
+			else if (number == 2) {
+				D.setMatrix(vector<vector<int>>(B.getDimentions().getNumberOfColumns(), vector<int>(A.getDimentions().getNumberOfRows())));
+				for (int i = 0;i < B.getDimentions().getNumberOfRows();i++) {
+					for (int j = 0;j < B.getDimentions().getNumberOfColumns();j++) {
+						if (i == j) {
+							cout << "v" << endl;
+						}
+						else {
+							D.setElements(i, j, B.getElements(i, j));
+						}
+					}
+				}
+			}//for Matrix B
+
+			//Print
+			D.print();
+
+			break;
+		}
+		case 9:
 			texteQuit();
 			return 0;
 
