@@ -39,6 +39,8 @@ public:
 	void print();
 
 	//Transposition method
-	Matrix T(Matrix& A);
+	Matrix transposeMatrix(Matrix& A);
+
+	int determinant(Matrix D);
 };
 #endif

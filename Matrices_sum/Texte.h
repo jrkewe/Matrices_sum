@@ -14,6 +14,7 @@
 	void texteMultiplication(int);
 	void texteDivision(int);
 	void texteTransposition();
+	void texteDeterminant(int);
 	void texteQuit();
 	void texteErrorCheckingLoop();
 	void texteExceptionsHandling();

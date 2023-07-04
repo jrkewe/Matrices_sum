@@ -27,7 +27,7 @@ void texteMatrixB(int y) {
 }
 
 void texteSwitch() {
-	std::cout << "The program respectively allows to: (1)+ (2)- (3)* (4)/ (5)T (6)Update matrix A (7)Update matrix B (8)Eigenvalue (9)Quit\n"
+	std::cout << "The program respectively allows to count: (1)+ (2)- (3)* (4)/ (5)T (6)Update matrix A (7)Update matrix B (8)Determinant (9)Quit\n"
 		<< "Select an option: ";
 }
 
@@ -70,6 +70,16 @@ void texteDivision(int i) {
 
 void texteTransposition() {
 	std::cout << "Which matrix you want to transpose: (1)a (2)b: " << std::endl;
+}
+
+void texteDeterminant(int i) {
+	enum j { menu, result };
+	if (i == menu) {
+		std::cout << "Determinant of witch matrix do you want to count: (1)A (2)B: " << std::endl;
+	}
+	else if (i==result) {
+		std::cout << "Determinant of matrix is equal:";
+	}
 }
 
 void texteQuit() {

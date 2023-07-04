@@ -1,4 +1,5 @@
 #include <iostream>
+#include <deque>
 #include "Dimensions.h"
 #include "Matrix.h"
 using namespace std;
@@ -43,7 +44,7 @@ void Matrix::print() {
 }
 
 //Transposition method
-Matrix Matrix::T(Matrix& A) {
+Matrix Matrix::transposeMatrix(Matrix& A) {
 	Matrix R;
 	int n = A.getDimentions().getNumberOfRows();
 	int m = A.getDimentions().getNumberOfColumns();
@@ -54,4 +55,50 @@ Matrix Matrix::T(Matrix& A) {
 		}
 	}
 	return R;
+}
+
+//Determinant of matrix
+int Matrix::determinant(Matrix D) {
+	int sum1 = 0;
+	int sum2 = 0;
+	int product = 1;
+	deque <int> dq;
+
+	//new deck
+	for (int i = 0;i < D.getDimentions().getNumberOfRows();i++) {
+		dq.push_back(i);
+	}
+
+	//SUM
+	for (int j = 0;j < D.getDimentions().getNumberOfRows();j++) {
+		product = 1;
+		for (int i = 0;i < D.getDimentions().getNumberOfRows();i++) {
+			product *= D.getElements(i, dq[i]);
+		}
+		int x = dq[0];
+		dq.pop_front();
+		dq.push_back(x);
+
+		sum1 += product;
+	}
+
+	//reversion of deck
+	for (int j = 0;j < D.getDimentions().getNumberOfRows();j++) {
+		dq[j] = D.getDimentions().getNumberOfRows() - 1 - j;
+	}
+
+	//SUM2
+	for (int j = 0;j < D.getDimentions().getNumberOfRows();j++) {
+		product = 1;
+		for (int i = D.getDimentions().getNumberOfRows() - 1;i > -1;i--) {
+			product *= D.getElements(i, dq[i]);
+		}
+		int x = dq[D.getDimentions().getNumberOfRows() - 1];
+		dq.pop_back();
+		dq.push_front(x);
+
+		sum2 += product;
+	}
+
+	return sum1 - sum2;
 }
