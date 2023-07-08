@@ -101,20 +101,44 @@ int Matrix::determinant(Matrix D) {
 			if (i == dq[i]) {			//polynomial
 
 				for (int w = 0; w < vector2.size(); w++) {
+					cout << "Rozmiar wektora:" << vector2.size() << endl;
 
+					cout << "Warunek for dla p:" << vector2[w] << endl;
 					for (int p = 0;p < vector2[w];p++) {
 
-						product = 1;
-						for (int q = 0;q < D.getDimentions().getNumberOfRows() - w;q++) {
-							if (p + q >= D.getDimentions().getNumberOfRows() - 1 && q != D.getDimentions().getNumberOfRows() - w - 1) {
-								product *= D.getElements(q + 1, q + 1);
-							}
-							else {
-								product *= D.getElements(q, q);
-							}
+						if (w == vector2.size() - 1) {
+							sum1 = 1;
+							break;
 						}
-						sum1 += product;
-					}
+						product = 1;
+						cout << "Warunek for dla q:" << D.getDimentions().getNumberOfRows() - w << endl;
+							for (int q = 0;q < D.getDimentions().getNumberOfRows() -w;q++) {
+								cout << "p:" << p << "  q:" << q << endl;
+								if (D.getDimentions().getNumberOfRows() - w == 1) {
+									product *= D.getElements(p, p);
+									cout << "Element:" << D.getElements(p, p) << endl;
+								}
+						
+								else if (p + q >= D.getDimentions().getNumberOfRows() - 1) {
+									if (q== D.getDimentions().getNumberOfRows() - 1) {
+										product *= D.getElements(q , q );
+										cout << "!Element:" << D.getElements(q , q ) << endl;
+									}
+									else {
+										product *= D.getElements(q + 1, q + 1);
+										cout << "?Element:" << D.getElements(q + 1, q + 1) << endl;
+									}
+								}
+								else {
+									product *= D.getElements(q, q);
+									cout << "{Element:" << D.getElements(q, q) << endl;
+								}
+							}
+							sum1 += product;
+						}
+
+
+					cout << "Sum1: " << sum1 << endl;
 					vec.push_back(sum1);
 					product = 1;
 					sum1 = 0;
