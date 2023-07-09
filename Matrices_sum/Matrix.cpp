@@ -110,28 +110,83 @@ int Matrix::determinant(Matrix D) {
 							sum1 = 1;
 							break;
 						}
+
 						product = 1;
 						cout << "Warunek for dla q:" << D.getDimentions().getNumberOfRows() - w << endl;
+
+
 							for (int q = 0;q < D.getDimentions().getNumberOfRows() -w;q++) {
 								cout << "p:" << p << "  q:" << q << endl;
+
 								if (D.getDimentions().getNumberOfRows() - w == 1) {
 									product *= D.getElements(p, p);
-									cout << "Element:" << D.getElements(p, p) << endl;
+									cout << "ppElement:" << D.getElements(p, p) << endl;
+								}
+
+								else if (D.getDimentions().getNumberOfRows() - w == 2) {
+									cout << "jestem" << endl;
+									if (q == 0) {
+										cout << "jestemq=0" << endl;
+										int z = D.getDimentions().getNumberOfRows() - 1;
+										cout << "jestem z=" <<  z<< "p:" << p << endl;
+										if (p < z) {
+											product *= D.getElements(0, 0);
+											cout << "00Element:" << D.getElements(0, 0) << endl;
+										}
+										else {
+											int m = z;
+											for (int i = 1; i < z; i++) {
+												m += z - i;
+												if (p<m) {
+													product *= D.getElements(i, i);
+													cout << "iElement:" << D.getElements(i, i) << endl;
+												}
+											}
+
+										}
+									}
+									else if (q==1) {
+										cout << "jestemq=1" << endl;
+										int z = D.getDimentions().getNumberOfRows()-1 ;
+										if (z==1) {
+											product *= D.getElements(z, z);
+											cout << "zzElement:" << D.getElements(z,z) << endl;
+											break;
+										}
+										cout << "jestem z=" << z << endl;
+										int i;
+											int m = z;
+											for (i = 1; i < z; i++) {
+												m += z - i;
+												if (p < m) {
+													//ile zbiorow miescilo sie przed p?
+													int count = 0;
+													for (int j = i;j>0;j--) {
+														//ile elementow bylo w tych wszystkich zbiorach
+														count += z - j;
+													}
+													product*= D.getElements(p-count+1, p - count + 1);
+													cout << "p-cElement:" << D.getElements(p - count + 1, p - count + 1) << endl;
+													break;
+												}
+											}
+									}
 								}
 						
 								else if (p + q >= D.getDimentions().getNumberOfRows() - 1) {
 									if (q== D.getDimentions().getNumberOfRows() - 1) {
 										product *= D.getElements(q , q );
-										cout << "!Element:" << D.getElements(q , q ) << endl;
+										cout << "qqElement:" << D.getElements(q , q ) << endl;
 									}
 									else {
 										product *= D.getElements(q + 1, q + 1);
-										cout << "?Element:" << D.getElements(q + 1, q + 1) << endl;
+										cout << "q-1Element:" << D.getElements(q + 1, q + 1) << endl;
 									}
 								}
+
 								else {
 									product *= D.getElements(q, q);
-									cout << "{Element:" << D.getElements(q, q) << endl;
+									cout << "qq2Element:" << D.getElements(q, q) << endl;
 								}
 							}
 							sum1 += product;
